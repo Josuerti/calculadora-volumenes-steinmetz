@@ -99,7 +99,6 @@ Consultar `INICIO_RAPIDO.md` para:
 
 ## 👥 Autores
 
-- Jsue
 - Samuel Cedeño
 - Evelyn Guaranda
 - Alberto Inga
