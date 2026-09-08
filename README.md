@@ -12,7 +12,6 @@
 proyecto_cvv_final/
 │
 ├── Logo_UCSG.png                              # Logo institucional
-├── logo_ucsg.png                              # Logo para web
 │
 ├── app_ucsg_final.html                        # Aplicación web principal ⭐
 │
@@ -46,7 +45,7 @@ proyecto_cvv_final/
 
 **Requisitos:** Python 3.8+ con librerías:
 ```bash
-pip install numpy scipy matplotlib sympy reportlab
+python -m pip install -r requirements.txt
 ```
 
 **Ejecutar:**
@@ -81,7 +80,7 @@ Muestra cálculos numéricos (SciPy), simbólicos (SymPy) y comparación de mét
 
 1. **Paraboloides Intersectados** - z = 8 - x² - y² y z = x² + y²
 2. **Esfera y Cono** - x² + y² + z² = 16 y z = √(x² + y²)
-3. **Cilindro y Plano** - z = 4 - y y z = x² + y²
+3. **Cilindro y Plano** - z = 4 - y y z = 0, sobre x² + y² ≤ 4
 4. **Hemisferio** - x² + y² + z² = 9, z ≥ 0
 5. **Personalizado** - Ingresar ecuaciones propias
 
@@ -121,3 +120,16 @@ Consultar `INICIO_RAPIDO.md` para:
 ## 📄 Licencia
 
 Proyecto académico desarrollado para la Universidad Católica de Santiago de Guayaquil.
+
+
+## Versión web y mantenimiento
+
+Este es el repositorio de referencia del proyecto. `app_ucsg_final.html` se distribuye también como `index.html` en [solidos_cvv](https://github.com/Josuerti/solidos_cvv). Mantén ambas copias sincronizadas al modificar la aplicación.
+
+La aplicación necesita Internet para cargar sus bibliotecas. El desarrollo paso a paso es local y no requiere una clave de API. Utiliza punto medio en x y Simpson compuesto en y; la precisión depende de la región y las funciones. Los ejemplos incluyen valores exactos de referencia, que dejan de mostrarse si se editan los campos.
+
+El analizador Python es un programa local independiente, no un servidor conectado a la aplicación web. Sus expresiones simbólicas se destinan a entradas de confianza, porque se procesan mediante SymPy.
+
+## Verificación
+
+Ejecuta `node tests.js` para comprobar la integración web y `python -m unittest test_analizador.py` para el motor Python. El reporte incluido es un ejemplo histórico; vuelve a generarlo para reflejar cambios del código.

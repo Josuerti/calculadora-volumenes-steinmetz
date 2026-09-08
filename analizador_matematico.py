@@ -82,10 +82,10 @@ class AnalizadorMatematico:
         """
         def integrando(y, x):
             """Altura del sólido h(x,y) = f(x,y) - g(x,y)"""
-            try:
-                return f_sup_func(x, y) - f_inf_func(x, y)
-            except:
-                return 0.0
+            altura = float(f_sup_func(x, y) - f_inf_func(x, y))
+            if not np.isfinite(altura) or altura < -1e-9:
+                raise ValueError('Altura no finita o superficie superior por debajo de la inferior')
+            return max(0.0, altura)
         
         # Integración doble con SciPy
         # dblquad(func, x_min, x_max, y_min_func, y_max_func)
@@ -355,3 +355,4 @@ if __name__ == "__main__":
     
     print()
     print("✅ ANÁLISIS COMPLETO FINALIZADO")
+
