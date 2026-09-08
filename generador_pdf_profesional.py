@@ -279,7 +279,7 @@ class GeneradorReporteProfesionalUCSG:
             ]
         )
         
-    def agregar_resultados(self, volumen_numerico: float, metodo: str = "Sumas de Riemann"):
+    def agregar_resultados(self, volumen_numerico: float, metodo: str = "Integración numérica", error_estimado: float = None):
         """Agrega los resultados del cálculo."""
         
         self.story.append(Paragraph(
@@ -290,7 +290,8 @@ class GeneradorReporteProfesionalUCSG:
         # Tabla de resultados
         data = [
             ['Método Empleado', 'Volumen Calculado', 'Precisión'],
-            [metodo, f'{volumen_numerico:.8f} u³', 'ε < 10⁻⁴']
+            [Paragraph(metodo, self.styles['Normal']), f'{volumen_numerico:.8f} u³',
+             f'±{error_estimado:.2e}' if error_estimado is not None else 'No estimada']
         ]
         
         tabla = Table(data, colWidths=[6*cm, 5*cm, 5*cm])
@@ -406,7 +407,8 @@ def generar_reporte_profesional(nombre_solido: str = "Paraboloides",
     # Resultados
     reporte.agregar_resultados(
         volumen_numerico=resultado['resultado_numerico']['volumen'],
-        metodo="Sumas de Riemann (100×100)"
+        metodo=resultado['resultado_numerico']['metodo'],
+        error_estimado=resultado['resultado_numerico']['error_estimado']
     )
     
     # Gráfica 3D
@@ -443,3 +445,4 @@ if __name__ == "__main__":
     
     print()
     print("Reporte generado exitosamente")
+
